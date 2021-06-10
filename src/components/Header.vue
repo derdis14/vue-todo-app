@@ -6,6 +6,7 @@
       label="ADD"
       icon="pi pi-plus"
       class="p-button-raised p-button-rounded p-button-lg"
+      @click="$emit('toggleNewTodo')"
     />
   </header>
 </template>
@@ -16,6 +17,7 @@ export default {
   props: {
     title: String,
   },
+  emits: ["toggleNewTodo"],
   computed: {
     homePage() {
       if (this.$route.path === "/") {

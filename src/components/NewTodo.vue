@@ -2,7 +2,7 @@
   <form @submit.prevent="onSubmit">
     <div class="todo">
       <span class="p-float-label">
-        <InputText id="todo" type="text" v-model="text" />
+        <InputText id="todo" type="text" v-model="text" ref="input" />
         <label for="todo">New Task</label>
       </span>
     </div>
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   name: "NewTodo",
   data() {
@@ -26,7 +28,27 @@ export default {
     };
   },
   methods: {
-    onSubmit() {},
+    ...mapMutations(["add"]),
+    onSubmit() {
+      if (this.text.length <= 0) {
+        console.log("Please add text!");
+      } else {
+        const newTodo = {
+          text: this.text,
+          done: false,
+          important: this.important,
+        };
+        this.add(newTodo);
+        this.text = "";
+      }
+      this.focusInput();
+    },
+    focusInput() {
+      this.$refs.input.$el.focus();
+    },
+  },
+  mounted() {
+    this.focusInput();
   },
 };
 </script>

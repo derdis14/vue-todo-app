@@ -5,7 +5,7 @@
         class="checkbox"
         :modelValue="todo.done"
         :binary="true"
-        @click="log('toggled')"
+        @click="toggleDone"
       />
 
       <span v-if="todo.important" class="material-icons-outlined">
@@ -17,17 +17,26 @@
       </span>
     </div>
 
-    <Button icon="pi pi-times" class="p-button-rounded p-button-text" />
+    <Button
+      icon="pi pi-times"
+      class="p-button-rounded p-button-text"
+      @click="remove(todo.id)"
+    />
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
+
 export default {
   props: {
     todo: Object,
   },
-  computed: {
-    log: () => console.log,
+  methods: {
+    ...mapMutations(["update", "remove"]),
+    toggleDone() {
+      this.update({ ...this.todo, done: !this.todo.done });
+    },
   },
 };
 </script>

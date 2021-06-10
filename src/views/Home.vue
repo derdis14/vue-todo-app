@@ -1,5 +1,5 @@
 <template>
-  <NewTodo class="form" />
+  <NewTodo v-if="showNewTodo" class="form" />
   <ShowTodos />
 </template>
 
@@ -9,6 +9,9 @@ import ShowTodos from "../components/ShowTodos";
 
 export default {
   name: "Home",
+  props: {
+    showNewTodo: Boolean,
+  },
   components: {
     NewTodo,
     ShowTodos,

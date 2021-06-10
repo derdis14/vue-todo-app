@@ -15,14 +15,14 @@
     </div>
 
     <div class="todos">
-      <Todos :todos="todos" />
+      <Todos :todos="filteredTodos" />
     </div>
   </div>
 </template>
 
 <script>
 import Todos from "./Todos";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "ShowTodos",
@@ -37,6 +37,17 @@ export default {
   },
   computed: {
     ...mapState(["todos"]),
+    ...mapGetters(["doneTodos", "undoneTodos"]),
+    filteredTodos() {
+      switch (this.selectedOption) {
+        case "UNCHECKED":
+          return this.undoneTodos;
+        case "CHECKED":
+          return this.doneTodos;
+        default:
+          return this.todos;
+      }
+    },
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Header title="Todo App" />
-    <router-view></router-view>
+    <Header title="Todo App" @toggleNewTodo="toggleNewTodo" />
+    <router-view :showNewTodo="showNewTodo"></router-view>
     <Footer />
   </div>
 </template>
@@ -13,11 +13,18 @@ import Footer from "./components/Footer";
 export default {
   name: "App",
   data() {
-    return {};
+    return {
+      showNewTodo: false,
+    };
   },
   components: {
     Header,
     Footer,
+  },
+  methods: {
+    toggleNewTodo() {
+      this.showNewTodo = !this.showNewTodo;
+    },
   },
 };
 </script>
