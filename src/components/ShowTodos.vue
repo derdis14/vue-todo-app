@@ -36,7 +36,9 @@ export default {
     Todos,
   },
   computed: {
-    ...mapState(["todos"]),
+    ...mapState({
+      todos: (state) => state.moduleTodos.todos,
+    }),
     ...mapGetters(["doneTodos", "undoneTodos"]),
     filteredTodos() {
       switch (this.selectedOption) {
