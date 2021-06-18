@@ -26,6 +26,9 @@ export default {
       this.showNewTodo = !this.showNewTodo;
     },
   },
+  created() {
+    this.$store.dispatch("loadState");
+  },
 };
 </script>
 

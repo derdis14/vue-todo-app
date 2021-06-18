@@ -1,0 +1,13 @@
+{
+  "todos": [
+    {
+      "text": "Backend Task 1",
+      "done": false,
+      "important": false,
+      "id": 0
+    }
+  ],
+  "counter": {
+    "nextId": 1
+  }
+}

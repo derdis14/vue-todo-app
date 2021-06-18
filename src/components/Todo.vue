@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   props: {
     todo: Object,
   },
   methods: {
-    ...mapMutations(["update", "remove"]),
+    ...mapActions(["update", "remove"]),
     toggleDone() {
       this.update({ ...this.todo, done: !this.todo.done });
     },

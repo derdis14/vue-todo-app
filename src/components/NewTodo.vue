@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "NewTodo",
@@ -28,7 +28,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["add"]),
+    ...mapActions(["add"]),
     onSubmit() {
       if (this.text.length <= 0) {
         console.log("Please add text!");
