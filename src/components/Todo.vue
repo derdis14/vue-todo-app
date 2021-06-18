@@ -6,13 +6,21 @@
         :modelValue="todo.done"
         :binary="true"
         @click="toggleDone"
+        data-test="toggleDone"
       />
 
-      <span v-if="todo.important" class="material-icons-outlined">
+      <span
+        v-if="todo.important"
+        class="material-icons-outlined"
+        data-test="important"
+      >
         priority_high
       </span>
 
-      <span :style="todo.done ? 'text-decoration: line-through' : null">
+      <span
+        :style="todo.done ? 'text-decoration: line-through' : null"
+        data-test="done"
+      >
         {{ todo.text }}
       </span>
     </div>
@@ -21,6 +29,7 @@
       icon="pi pi-times"
       class="p-button-rounded p-button-text"
       @click="remove(todo.id)"
+      data-test="remove"
     />
   </div>
 </template>
