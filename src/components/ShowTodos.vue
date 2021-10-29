@@ -20,11 +20,14 @@
   </div>
 </template>
 
-<script>
-import Todos from "./Todos";
-import { mapState, mapGetters } from "vuex";
+<script lang="ts">
+import { defineComponent } from "vue";
+import Todos from "@/components/Todos.vue";
+import { mapGetters } from "vuex";
+import RadioButton from "primevue/radiobutton";
+import { TodoItem } from "@/types";
 
-export default {
+export default defineComponent({
   name: "ShowTodos",
   data() {
     return {
@@ -34,13 +37,14 @@ export default {
   },
   components: {
     Todos,
+    RadioButton,
   },
   computed: {
-    ...mapState({
-      todos: (state) => state.moduleTodos.todos,
-    }),
+    todos(): TodoItem[] {
+      return this.$store.state.moduleTodos.todos;
+    },
     ...mapGetters(["doneTodos", "undoneTodos"]),
-    filteredTodos() {
+    filteredTodos(): TodoItem[] {
       switch (this.selectedOption) {
         case "UNCHECKED":
           return this.undoneTodos;
@@ -51,7 +55,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style scoped>

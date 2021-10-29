@@ -3,22 +3,11 @@ import NewTodo from "@/components/NewTodo.vue";
 import { createStore } from "vuex";
 import PrimeVue from "primevue/config";
 
-import Button from "primevue/button";
-import InputText from "primevue/inputtext";
-import Checkbox from "primevue/checkbox";
-import RadioButton from "primevue/radiobutton";
-
 describe("NewTodo.vue", () => {
   const mockStore = createStore();
   const wrapper = mount(NewTodo, {
     global: {
       plugins: [mockStore, PrimeVue],
-      components: {
-        Button,
-        InputText,
-        Checkbox,
-        RadioButton,
-      },
     },
     attachTo: document.body,
   });

@@ -3,11 +3,6 @@ import Todo from "@/components/Todo.vue";
 import { createStore } from "vuex";
 import PrimeVue from "primevue/config";
 
-import Button from "primevue/button";
-import InputText from "primevue/inputtext";
-import Checkbox from "primevue/checkbox";
-import RadioButton from "primevue/radiobutton";
-
 function initialState() {
   return {
     todos: [
@@ -33,12 +28,6 @@ describe("Todo.vue", () => {
   const wrapper = mount(Todo, {
     global: {
       plugins: [mockStore, PrimeVue],
-      components: {
-        Button,
-        InputText,
-        Checkbox,
-        RadioButton,
-      },
     },
     props: {
       todo: initialState().todos[0],

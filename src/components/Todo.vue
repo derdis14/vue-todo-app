@@ -18,7 +18,7 @@
       </span>
 
       <span
-        :style="todo.done ? 'text-decoration: line-through' : null"
+        :style="todo.done ? 'text-decoration: line-through' : undefined"
         data-test="done"
       >
         {{ todo.text }}
@@ -34,20 +34,49 @@
   </div>
 </template>
 
-<script>
-import { mapActions } from "vuex";
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+import { useStore, mapActions } from "vuex";
+import { TodoItem } from "@/types";
+import Checkbox from "primevue/checkbox";
+import Button from "primevue/button";
 
-export default {
+export default defineComponent({
+  name: "Todo",
   props: {
-    todo: Object,
+    todo: {
+      type: Object as PropType<TodoItem>,
+      required: true,
+    },
   },
+  components: {
+    Checkbox,
+    Button,
+  },
+  /* setup(props) {
+    const store = useStore();
+    function update(updatedTodo: TodoItem) {
+      store.dispatch("update", updatedTodo);
+    }
+    function remove(id: number) {
+      store.dispatch("remove", id);
+    }
+    function toggleDone() {
+      update({ ...props.todo, done: !props.todo.done });
+    }
+    return {
+      update,
+      remove,
+      toggleDone,
+    };
+  }, */
   methods: {
     ...mapActions(["update", "remove"]),
     toggleDone() {
       this.update({ ...this.todo, done: !this.todo.done });
     },
   },
-};
+});
 </script>
 
 <style scoped>

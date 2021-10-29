@@ -2,7 +2,7 @@
   <header>
     <h1>{{ title }}</h1>
     <Button
-      v-show="homePage"
+      v-show="onHomePage"
       label="ADD"
       icon="pi pi-plus"
       class="p-button-raised p-button-rounded p-button-lg"
@@ -11,15 +11,21 @@
   </header>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+import Button from "primevue/button";
+
+export default defineComponent({
   name: "Header",
   props: {
     title: String,
   },
+  components: {
+    Button,
+  },
   emits: ["toggleNewTodo"],
   computed: {
-    homePage() {
+    onHomePage(): boolean {
       if (this.$route.path === "/") {
         return true;
       } else {
@@ -27,7 +33,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style scoped>

@@ -6,11 +6,12 @@
   </div>
 </template>
 
-<script>
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
-export default {
+export default defineComponent({
   name: "App",
   data() {
     return {
@@ -29,7 +30,7 @@ export default {
   created() {
     this.$store.dispatch("loadState");
   },
-};
+});
 </script>
 
 <style>

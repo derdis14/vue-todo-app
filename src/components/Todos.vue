@@ -4,17 +4,18 @@
   </div>
 </template>
 
-<script>
-import Todo from "./Todo";
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+import Todo from "@/components/Todo.vue";
+import { TodoItem } from "@/types";
 
-export default {
+export default defineComponent({
+  name: "Todos",
   props: {
-    todos: Array,
+    todos: Array as PropType<TodoItem[]>,
   },
   components: {
     Todo,
   },
-};
+});
 </script>
-
-<style scoped></style>

@@ -3,20 +3,23 @@
   <ShowTodos />
 </template>
 
-<script>
-import NewTodo from "../components/NewTodo";
-import ShowTodos from "../components/ShowTodos";
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+import NewTodo from "@/components/NewTodo.vue";
+import ShowTodos from "@/components/ShowTodos.vue";
 
-export default {
+export default defineComponent({
   name: "Home",
   props: {
-    showNewTodo: Boolean,
+    showNewTodo: {
+      type: Boolean,
+    },
   },
   components: {
     NewTodo,
     ShowTodos,
   },
-};
+});
 </script>
 
 <style scoped>

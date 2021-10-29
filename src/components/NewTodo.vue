@@ -6,7 +6,7 @@
           id="todo"
           type="text"
           v-model="text"
-          ref="input"
+          ref="inputTemplateRef"
           data-test="text"
         />
         <label for="todo">New Task</label>
@@ -27,11 +27,20 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import { mapActions } from "vuex";
+import InputText from "primevue/inputtext";
+import Checkbox from "primevue/checkbox";
+import Button from "primevue/button";
 
-export default {
+export default defineComponent({
   name: "NewTodo",
+  components: {
+    InputText,
+    Checkbox,
+    Button,
+  },
   data() {
     return {
       text: "",
@@ -55,13 +64,14 @@ export default {
       this.focusInput();
     },
     focusInput() {
-      this.$refs.input.$el.focus();
+      const templateRefs = this.$refs as any;
+      templateRefs.inputTemplateRef.$el.focus();
     },
   },
   mounted() {
     this.focusInput();
   },
-};
+});
 </script>
 
 <style scoped>
